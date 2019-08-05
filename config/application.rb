@@ -21,6 +21,10 @@ module Nomster
 
     # Precompile additional assets
     config.assets.precompile += %w( .svg .eot .woff2 .woff .ttf )
-    
+
   end
+
+  require 'will_paginate'
+  require 'will_paginate/active_record'
+
 end
