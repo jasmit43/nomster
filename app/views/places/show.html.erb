@@ -28,7 +28,7 @@
 </script>
 
 <script async defer
-src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDJXxSBXEHSV--3_FJwmoWklXEYtSAtYsg&callback=initMap">
+src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDJXxSBXEHSV--3_FJwmoWklXEYtSAtYsg&callback=initMap" >
 </script>
 
 <div id="map"></div>
@@ -57,12 +57,14 @@ src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDJXxSBXEHSV--3_FJwmoWklXE
 
 <div class="clear"></div>
 
-  <% @place.photos.each do |photo| %>
-    <%= image_tag photo.picture.url %>
-    <%= photo.caption %>
-    <small><%= photo.user.email %></small>
+  <div class="booyah-box col-10 offset-1">
+    <% @place.photos.each do |photo| %>
+      <%= image_tag photo.picture.url, class: 'photo_style' %>
+      <%= photo.caption %>
+      <small><%= photo.user.email %></small>
 
-  <% end %>
+    <% end %>
+  </div>
 
 <div class="clear"></div>
 
