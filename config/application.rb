@@ -27,4 +27,10 @@ module Nomster
   require 'will_paginate'
   require 'will_paginate/active_record'
 
+  require 'carrierwave'
+  require 'carrierwave/orm/activerecord'
+
+  require 'fog/aws'
+  
+
 end

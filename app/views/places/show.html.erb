@@ -40,6 +40,10 @@ src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDJXxSBXEHSV--3_FJwmoWklXE
   
   <div class="float-right">
     <% if current_user && current_user == @place.user %>
+      <!-- Button trigger Add a Photo modal -->
+      <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#myPhotoModal">
+        Add a Photo
+      </button>
       <%= link_to 'Edit', edit_place_path(@place), class: 'btn btn-primary' %>
       <%= link_to 'Destroy', place_path(@place), method: :delete, data: {confirm: 'Are you sure you want to delete this?'}, class: 'btn btn-danger' %>
     <% end %>
@@ -53,11 +57,42 @@ src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDJXxSBXEHSV--3_FJwmoWklXE
 
 <div class="clear"></div>
 
+  <% @place.photos.each do |photo| %>
+    <%= image_tag photo.picture.url %>
+    <%= photo.caption %>
+    <small><%= photo.user.email %></small>
 
+  <% end %>
 
+<div class="clear"></div>
 
+<!-- Modal Add a Photo -->
+<div class="modal fade" id="myPhotoModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">×</span>
+        </button>
+        <h4 class="modal-title" id="myModalLabel">Add a Photo</h4>
+      </div>
+      
+      <%= simple_form_for @photo, url: place_photos_path(@place) do |f| %>
+        <div class="modal-body">
+          <%= f.input :picture %>
+          <%= f.input :caption %>        
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+          <%= f.submit "Add a Photo", class: 'btn btn-primary' %>
+        </div>
+      <% end %>
 
-<!-- Modal -->
+    </div>
+  </div>
+</div>
+
+<!-- Modal Add a Comment -->
 <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
   <div class="modal-dialog" role="document">
     <div class="modal-content">
@@ -65,7 +100,7 @@ src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDJXxSBXEHSV--3_FJwmoWklXE
         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
           <span aria-hidden="true">×</span>
         </button>
-        <h4 class="modal-title" id="myModalLabel">Add a comment</h4>
+        <h4 class="modal-title" id="myModalLabel">Add a Comment</h4>
       </div>
       
       <%= simple_form_for @comment, url: place_comments_path(@place) do |f| %>
@@ -89,9 +124,9 @@ src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDJXxSBXEHSV--3_FJwmoWklXE
 
   <h1 class="float-left">Comments</h1>
 
-  <!-- Button trigger modal -->
+  <!-- Button trigger Add a Comment modal -->
   <button type="button" class="btn btn-primary btn-lg float-right" data-toggle="modal" data-target="#myModal">
-    Add a comment
+    Add a Comment
   </button>
 
 </div>
