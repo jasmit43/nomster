@@ -135,8 +135,17 @@ blockquote p {
 
 
 .photo_style {
-  width: 300px;
+  max-height: 300px;
+  max-width: 600px;
 
+}
+
+.image-box {
+  margin-right: 10px;
+}
+
+.place-image-row {
+  padding: 0;
 }
 
 .carousel-inner > .carousel-item > img, .carousel-inner > .carousel-item > a > img {

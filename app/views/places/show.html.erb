@@ -57,14 +57,17 @@ src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDJXxSBXEHSV--3_FJwmoWklXE
 
 <div class="clear"></div>
 
-  <div class="booyah-box col-10 offset-1">
-    <% @place.photos.each do |photo| %>
-      <%= image_tag photo.picture.url, class: 'photo_style' %>
-      <%= photo.caption %>
-      <small><%= photo.user.email %></small>
 
+  <div class="row col-10 offset-1 place-image-row">
+    <% @place.photos.each do |photo| %>
+      <div class="booyah-box col-6">
+        <div class="col-12"><%= image_tag photo.picture.url, class: 'photo_style' %></div>
+        <div class="col-12"><%= photo.caption %></div>
+        <small><%= photo.user.email %></small>
+      </div>
     <% end %>
   </div>
+  
 
 <div class="clear"></div>
 
